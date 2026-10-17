@@ -1,6 +1,5 @@
 // @ts-nocheck
 
-// ---------- Food Data ----------
 const foods = [
   { id: 1, name: "Party Jollof Rice", category: "rice", price: 4500, image: "jollof.jpg" },
   { id: 2, name: "Special Fried Rice", category: "rice", price: 5000, image: "friedrice.jpg" },
@@ -18,7 +17,6 @@ const cartItems = document.getElementById("cart-items");
 const totalPrice = document.getElementById("total-price");
 const cartCount = document.getElementById("cart-count");
 
-// ---------- Render Menu ----------
 function renderMenu(items) {
   menuGrid.innerHTML = "";
   items.forEach((food) => {
@@ -35,7 +33,6 @@ function renderMenu(items) {
   });
 }
 
-// ---------- Filter Menu ----------
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", (e) => {
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -50,8 +47,6 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
-// ---------- Cart Logic ----------
-// Listen for clicks on the menu grid (Event Delegation)
 menuGrid.addEventListener("click", (e) => {
   const btn = e.target.closest(".add-to-cart");
   if (btn) {
@@ -80,7 +75,6 @@ function updateCart() {
   if (cart.length === 0) {
     cartItems.innerHTML = `<li class="empty-text">Your cart is empty.</li>`;
   } else {
-    // Notice 'index' is removed here since it wasn't used
     cart.forEach((item) => {
       const itemTotal = item.price * item.qty;
       total += itemTotal;
@@ -98,21 +92,18 @@ function updateCart() {
   cartCount.textContent = count;
 }
 
-// ---------- Checkout on WhatsApp ----------
 document.getElementById("checkout-btn").addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Please add items to your order first!");
     return;
   }
 
-  // Get the address
   const address = document.getElementById("delivery-address").value.trim();
   if (!address) {
     alert("Please enter your delivery address so we know where to send the food!");
     return;
   }
 
-  // ⚠️ CHANGE THIS TO YOUR WHATSAPP NUMBER (No + sign, no spaces)
   const whatsappNumber = "2348124713885"; 
   const restaurantName = "TasteBudz";
 
@@ -126,11 +117,11 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
   });
 
   message += `%0ATotal: ₦${total.toLocaleString()}%0A%0A`;
-  
-  // Add the address to the WhatsApp message
   message += `📍 Delivery Address: ${address}%0A%0A`; 
-  
   message += `Please send your account details for payment. Thank you!`;
 
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 });
+
+renderMenu(foods);
+updateCart();
