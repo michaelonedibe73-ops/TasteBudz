@@ -105,6 +105,13 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
     return;
   }
 
+  // Get the address
+  const address = document.getElementById("delivery-address").value.trim();
+  if (!address) {
+    alert("Please enter your delivery address so we know where to send the food!");
+    return;
+  }
+
   // ⚠️ CHANGE THIS TO YOUR WHATSAPP NUMBER (No + sign, no spaces)
   const whatsappNumber = "2348124713885"; 
   const restaurantName = "TasteBudz";
@@ -119,7 +126,11 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
   });
 
   message += `%0ATotal: ₦${total.toLocaleString()}%0A%0A`;
-  message += `Please confirm my order. Thank you!`;
+  
+  // Add the address to the WhatsApp message
+  message += `📍 Delivery Address: ${address}%0A%0A`; 
+  
+  message += `Please send your account details for payment. Thank you!`;
 
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 });
