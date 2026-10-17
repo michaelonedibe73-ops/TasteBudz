@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TasteBudz — Delicious Meals Delivered</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">TasteBudz 🍔</div>
+    <div class="cart-icon" id="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Hot & Delicious Meals</h1>
+      <p>Delivered fast to your doorstep. Order now and taste the difference!</p>
+    </section>
+
+    <!-- Category Filters -->
+    <section class="filters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="rice">Rice Dishes</button>
+      <button class="filter-btn" data-cat="swallow">Swallow</button>
+      <button class="filter-btn" data-cat="protein">Proteins & Sides</button>
+      <button class="filter-btn" data-cat="drinks">Drinks & Snacks</button>
+    </section>
+
+    <!-- Food Menu Grid -->
+    <section class="menu-grid" id="menu-grid">
+      <!-- Food items will be injected here by JavaScript -->
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section" id="cart-section">
+      <h2>Your Order</h2>
+      <ul id="cart-items">
+        <li class="empty-text">Your cart is empty.</li>
+      </ul>
+      <div class="cart-total">
+        <strong>Total: ₦<span id="total-price">0</span></strong>
+      </div>
+      <button id="checkout-btn" class="whatsapp-btn">
+        Complete Order on WhatsApp 💬
+      </button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
