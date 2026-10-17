@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+// ---------- Food Data ----------
 const foods = [
   { id: 1, name: "Party Jollof Rice", category: "rice", price: 4500, image: "jollof.jpg" },
   { id: 2, name: "Special Fried Rice", category: "rice", price: 5000, image: "friedrice.jpg" },
@@ -17,6 +18,7 @@ const cartItems = document.getElementById("cart-items");
 const totalPrice = document.getElementById("total-price");
 const cartCount = document.getElementById("cart-count");
 
+// ---------- Render Menu ----------
 function renderMenu(items) {
   menuGrid.innerHTML = "";
   items.forEach((food) => {
@@ -33,6 +35,7 @@ function renderMenu(items) {
   });
 }
 
+// ---------- Filter Menu ----------
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", (e) => {
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -47,6 +50,7 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
+// ---------- Add to Cart Logic ----------
 menuGrid.addEventListener("click", (e) => {
   const btn = e.target.closest(".add-to-cart");
   if (btn) {
@@ -67,6 +71,7 @@ function addToCart(id) {
   updateCart();
 }
 
+// ---------- Update Cart UI ----------
 function updateCart() {
   cartItems.innerHTML = "";
   let total = 0;
@@ -79,10 +84,15 @@ function updateCart() {
       const itemTotal = item.price * item.qty;
       total += itemTotal;
       count += item.qty;
+      
+      // Added the ❌ Remove button here
       cartItems.innerHTML += `
-        <li>
+        <li style="display: flex; justify-content: space-between; align-items: center;">
           <span>${item.name} (x${item.qty})</span>
-          <span>₦${itemTotal.toLocaleString()}</span>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span>₦${itemTotal.toLocaleString()}</span>
+            <button class="remove-item" data-id="${item.id}" style="background: none; border: none; color: #e63946; cursor: pointer; font-size: 16px; font-weight: bold;">❌</button>
+          </div>
         </li>
       `;
     });
@@ -92,6 +102,29 @@ function updateCart() {
   cartCount.textContent = count;
 }
 
+// ---------- Remove from Cart Logic ----------
+cartItems.addEventListener("click", (e) => {
+  const btn = e.target.closest(".remove-item");
+  if (btn) {
+    const id = Number(btn.dataset.id);
+    removeFromCart(id);
+  }
+});
+
+function removeFromCart(id) {
+  const itemIndex = cart.findIndex(item => item.id === id);
+  
+  if (itemIndex > -1) {
+    if (cart[itemIndex].qty > 1) {
+      cart[itemIndex].qty -= 1;
+    } else {
+      cart.splice(itemIndex, 1);
+    }
+    updateCart();
+  }
+}
+
+// ---------- Checkout on WhatsApp ----------
 document.getElementById("checkout-btn").addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Please add items to your order first!");
@@ -104,6 +137,7 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
     return;
   }
 
+  // ⚠️ CHANGE THIS TO YOUR WHATSAPP NUMBER (No + sign, no spaces)
   const whatsappNumber = "2348124713885"; 
   const restaurantName = "TasteBudz";
 
@@ -123,5 +157,6 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 });
 
+// ---------- Initialize ----------
 renderMenu(foods);
 updateCart();
