@@ -134,7 +134,3 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
 
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 });
-
-// Initialize
-renderMenu(foods);
-updateCart();
