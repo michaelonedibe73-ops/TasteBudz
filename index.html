@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TasteBudz — Delicious Meals Delivered</title>
+  
+  <!-- OG Tags for WhatsApp Preview -->
   <meta property="og:title" content="TasteBudz — Hot & Delicious Meals">
-<meta property="og:description" content="Delivered fast to your doorstep. Order now and taste the difference!">
-<meta property="og:image" content="https://michaelonedibe73-ops.github.io/TasteBudz/jollof.jpg">
-<meta property="og:url" content="https://michaelonedibe73-ops.github.io/TasteBudz/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+  <meta property="og:description" content="Delivered fast to your doorstep. Order now and taste the difference!">
+  <meta property="og:image" content="https://michaelonedibe73-ops.github.io/TasteBudz/jollof.jpg">
+  <meta property="og:url" content="https://michaelonedibe73-ops.github.io/TasteBudz/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,19 +51,15 @@
       <ul id="cart-items">
         <li class="empty-text">Your cart is empty.</li>
       </ul>
+      
       <div class="cart-total">
         <strong>Total: ₦<span id="total-price">0</span></strong>
       </div>
-      <div class="cart-total">
-  <strong>Total: ₦<span id="total-price">0</span></strong>
-</div>
+      
+      <!-- Delivery Address Input -->
+      <input type="text" id="delivery-address" placeholder="Enter your delivery address" style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px;">
 
-<!-- ADD THIS ADDRESS INPUT -->
-<input type="text" id="delivery-address" placeholder="Enter your delivery address" style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px;">
-
-<button id="checkout-btn" class="whatsapp-btn">
-  Complete Order on WhatsApp 💬
-</button>
+      <!-- Single WhatsApp Button -->
       <button id="checkout-btn" class="whatsapp-btn">
         Complete Order on WhatsApp 💬
       </button>
